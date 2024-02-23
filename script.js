@@ -1,12 +1,12 @@
 let gridContainer = document.querySelector(".grid");
 
 let grid = [];
-let numberOfPixels = 20;
-function makeGrid(numberOfPixels, pixelSize) {
-  if(numberOfPixels > 100 || numberOfPixels < 1){
+function makeGrid(gridSize) {
+  if(gridSize > 100 || gridSize < 1){
     alert ("Invalid number of pixels");
   } else {
-      for (let i = 0; i < numberOfPixels**2; i++) {
+      for (let i = 0; i < gridSize**2; i++) {
+        let pixelSize = 600/gridSize + "px";
         grid[i] = document.createElement("div");
         grid[i].style.width = pixelSize; //probably needs a px after but idk how?
         grid[i].style.height = pixelSize;
@@ -19,7 +19,7 @@ function makeGrid(numberOfPixels, pixelSize) {
 function draw(mode) {
   if(mode == "hover") {
     gridContainer.addEventListener("mouseover", (event) => {
-      for (let i = 0; i < numberOfPixels**2; i++) {
+      for (let i = 0; i < gridSize**2; i++) {
         grid[i].addEventListener("mouseover", (event) => {
           grid[i].classList.add("colored");
         }
@@ -29,7 +29,7 @@ function draw(mode) {
     );
   } else {
     gridContainer.addEventListener("click", (event) => {
-      for (let i = 0; i < numberOfPixels**2; i++) {
+      for (let i = 0; i < gridSize**2; i++) {
         grid[i].addEventListener("click", (event) => {
           grid[i].classList.add("colored"); //make it so it can be mouse dragging and clicking
         }
@@ -40,17 +40,21 @@ function draw(mode) {
   }
 }
 
-/*let changeGrid = document.querySelector("#changeGrid");
+let gridSize = 20;
+
+makeGrid(gridSize); 
+draw("hover");
+
+
+let changeGrid = document.querySelector("#changeGrid");
 let changeMode = document.querySelector("#changeMode");
 
-function changeGrid(numberOfPixels){ //these are probably really bad names but ikd
+//function changeGrid(numberOfPixels){ //these are probably really bad names but ikd
   
-}
+//}
 
-changeGrid.addEventListener("click", (event) => changeGrid());*/
+//changeGrid.addEventListener("click", (event) => changeGrid());
 
-makeGrid(numberOfPixels, "25px"); //pixelSize shouldn't be a paremeter but be determined by the size of the grid and the number of pixels
-draw("click");
 /*
 
 add button to change drawing to click and holding rather than just hovering
