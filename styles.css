@@ -1,13 +1,19 @@
 .content {
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .grid {
   display: flex;
   min-width: 600px;
-  width: 600px;
   flex-wrap: wrap;
+  
+}
+
+.pixel {
+  border: 1px groove rgb(135, 109, 109);
 }
 
 .uncolored {
@@ -16,4 +22,20 @@
 
 .colored {
   background-color: black;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.button {
+  display: flex;
+  height: 30px;
+  width: 100px;
+  flex-wrap: wrap; /* these buttons are bad! */
+  padding: 30px;
+  text-align: center;
 }
