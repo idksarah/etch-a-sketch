@@ -6,7 +6,7 @@ let newSize;
 function makeGrid(gridSize) {
   if(gridSize > 100 || gridSize < 1){
     alert ("Invalid number of pixels");
-  } else {
+  }else {
       for (numOfPixels = 0; numOfPixels < gridSize**2; numOfPixels++) {
         let pixelSize = 600/gridSize + "px";
         grid[numOfPixels] = document.createElement("div");
@@ -14,10 +14,11 @@ function makeGrid(gridSize) {
         grid[numOfPixels].style.height = pixelSize;
         grid[numOfPixels].classList.add("uncolored", "pixel");
         gridContainer.appendChild(grid[numOfPixels]); 
+
+        gridContainer.style.width = 600 + 2*gridSize + "px";
     }    
   }
 }
-
 
 function draw(mode) {
   if(mode == "hover") {
@@ -43,7 +44,6 @@ function draw(mode) {
   }
 }
 
-
 let changeGrid = document.querySelector("#changeGrid");
 let changeMode = document.querySelector("#changeMode");
 
@@ -55,9 +55,14 @@ function removeGrid (){
 
 changeGrid.addEventListener("click", (event) => {
   newSize = prompt("Enter new grid size; 1-100 px");
-  removeGrid();
-  makeGrid(newSize);
-  draw(newSize); //ok idk whats wrong but i think the d raw function isnt updating with the new grid2
+  newSize = Number(newSize)
+  if (Number.isInteger(newSize)) {
+    removeGrid();
+    makeGrid(newSize);
+    draw(newSize); 
+  }else {
+    alert("Please enter a valid number of pixels");
+  }
 }
 );
 
@@ -65,7 +70,11 @@ newSize = 20;
 
 makeGrid(newSize); 
 draw("hover");
-/*
 
-add button to change drawing to click and holding rather than just hovering
+/*
+additional functions i think would be cool
+  color picker
+  eraser
+  reset grid
+  click + drag draw function instead of a simple hover
 */
