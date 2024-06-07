@@ -20,7 +20,7 @@ function makeGrid(gridSize) {
   }
 }
 
-function getMouseDown(element) {
+/*function getMouseDown(element) {
   if(element.addEventListener("mousedown", (event) => {
     return true;
   })) {
@@ -35,27 +35,31 @@ gridContainer.addEventListener("mousedown", (event) => {
     console.log("yippeee!!");
   }
 }
-);
+);*/
+
+let mouseDown;
 
 function draw(mode) {
-  if(mode == "hover") { 
+ 
     for(let i = 0; i < newSize**2; i++) {
       grid[i].addEventListener("mouseover", (event) => {
         grid[i].classList.add("colored");
       }); 
     }
-  }else if (mode == "click") { //click/drag 
-    /*gridContainer.addEventListener("mousedown", (event) => {
-      for(let i = 0; i < newSize**2; i++) {
-        grid[i].classList.toggle("colored");
-      }
-    });*/
 
-    for(let i = 0; i < newSize**2; i++) {
-      grid[i].addEventListener("mousedown", (event) => {
-        grid[i].classList.toggle("colored");
-      });
-    }
+
+      document.addEventListener("mousemove", onMouseMove());
+
+     /* document.addEventListener("mouseup", (event) => { //mouse should stop drawing when theres a mosueup but doesnt work
+        // https://javascript.info/mouse-drag-and-drop
+        mouseDown = false;
+        grid.onmouseup = function() {
+          document.removeEventListener("mousemove", onMouseMove);
+          document.removeEventListener("mouseover", onMouseMove);
+          grid.onmouseup = null;
+        }
+      });*/
+    
     /*
       while mousedown = true, any pixel the mouse hovers over turns black! 
       
@@ -68,7 +72,7 @@ function draw(mode) {
     ); 
     }*/
   }
-}
+
 
 let changeGrid = document.querySelector("#changeGrid");
 let changeMode = document.querySelector("#changeMode");
@@ -102,7 +106,7 @@ resetGrid.addEventListener("click", (event) => {
 
 newSize = 20;
 
-mode = "hover";
+mode = "j";
 
 makeGrid(newSize); 
 draw(mode);

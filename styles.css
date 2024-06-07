@@ -31,9 +31,14 @@
 
 .button {
   display: flex;
-  height: 30px;
-  width: 100px;
   flex-wrap: wrap; /* these buttons are bad! */
-  padding: 30px;
+  padding: 15px;
   text-align: center;
+  line-height: 0px;
+  margin: 5px;
+}
+
+.big-boy-content {
+  border: 50px;
+  border-color:rgb(142, 63, 63)
 }
